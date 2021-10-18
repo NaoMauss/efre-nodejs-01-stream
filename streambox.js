@@ -1,17 +1,17 @@
+const fs = require('fs');
+
 function duplicate(file=''){
-    const fs = require('fs');
+    
     fs.copyFile(file , 'destination.txt', (err) => {
         if (err) throw err;
         console.log('source.txt was copied to destination.txt');
       });
 }
 
+function duplicatepipe(file='', destination='destination.txt'){
+    const readable = fs.createReadStream(file);
+    const writable = fs.createWriteStream(destination);
+    readable.pipe(writable);
+}
 
-
-
-
-// File destination.txt will be created or overwritten by default.
-
-
-
-module.exports = { duplicatee: duplicate }
+module.exports = { duplicatee: duplicate, duplicatepipe }
