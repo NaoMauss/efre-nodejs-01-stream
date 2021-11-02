@@ -1,7 +1,7 @@
 const { Transform } = require('stream')
 const fs = require('fs');
 
-function transform(directory = `main.js`, typefile = `.js`, f){
+function transform(filename, f) {
     const TransformStream = new Transform();
 
     TransformStream._transform = function(chunk, encoding, callback) {
@@ -10,9 +10,11 @@ function transform(directory = `main.js`, typefile = `.js`, f){
     }
     
     
-    const readable = fs.createReadStream(directory);
-    const writable = fs.createWriteStream(`reponse.txt`)
-    readable.pipe(TransformStream).pipe(writable)
-}
+    const readable = fs.createReadStream(filename);
+    const writable = fs.createWriteStream(`reponse.json`)
 
-module.exports = { transform }
+    readable.pipe(TransformStream).pipe(writable)
+}    
+
+ 
+module.exports = {transform}

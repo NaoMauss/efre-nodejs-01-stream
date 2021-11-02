@@ -2,9 +2,8 @@ const { transform } = require('./streambox3.js')
 
 function regexCount(valeur){
     const reg = /(?<section>[a-zA-Z0-9\'\"\`\._-]+)/gm 
-    let y = 0
     let matches
-
+    let y = 0
     while (matches = reg.exec(valeur)) {
         y+=1
       }
